@@ -13,12 +13,13 @@ public class Main extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("DizionarioGraph.fxml"));
 			BorderPane root = (BorderPane) loader.load();
-			DizionarioGraphController controller=new DizionarioGraphController();
+			
+			DizionarioGraphController controller=loader.getController();
 			Model model=new Model();
 			controller.setModel(model);
-			Scene scene = new Scene(root, 400, 400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			

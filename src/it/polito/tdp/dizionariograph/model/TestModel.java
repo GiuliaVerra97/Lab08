@@ -11,7 +11,7 @@ public class TestModel {
 		model.createGraph(3);
 		System.out.println(String.format("**Grafo creato**"));
 		System.out.format("creati %d vertici e %d archi\n", model.getGrafo().vertexSet().size(), model.getGrafo().edgeSet().size());
-		//System.out.print(model.getGrafo());
+		System.out.print(model.getGrafo());
 		
 		List<String> vicini = model.displayNeighbours("casa");
 		System.out.println("Neighbours di casa: " + vicini + "\n");

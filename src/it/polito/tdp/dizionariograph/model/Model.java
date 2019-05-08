@@ -3,12 +3,10 @@ package it.polito.tdp.dizionariograph.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
 
 import org.jgrapht.Graph;
 import org.jgrapht.Graphs;
 import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.SimpleDirectedGraph;
 import org.jgrapht.graph.SimpleGraph;
 
 import it.polito.tdp.dizionariograph.db.WordDAO;
@@ -19,6 +17,7 @@ public class Model {
 	private List<String> listaParole;	
 	
 	public void createGraph(int numeroLettere) {
+		
 		grafo=new SimpleGraph<>(DefaultEdge.class);
 		WordDAO dao=new WordDAO();
 		this.listaParole=dao.getAllWordsFixedLength(numeroLettere);
@@ -36,6 +35,7 @@ public class Model {
 					if(partenza.charAt(i)!=arrivo.charAt(i))
 						conta++;
 				}
+				
 				if(conta==1)
 					this.grafo.addEdge(partenza, arrivo);
 					
@@ -43,11 +43,12 @@ public class Model {
 			
 		}
 
-		//System.err.println("createGraph -- TODO");
 	}
 
+	
+	
+	
 	public List<String> displayNeighbours(String parolaInserita) {
-		//System.err.println("displayNeighbours -- TODO");
 		
 		List<String> result=new ArrayList<String>();
 		WordDAO dao=new WordDAO();
@@ -63,22 +64,20 @@ public class Model {
 				result.add(arrivo);
 		}
 		
-		
 		return result;
-		
-	
-		
-		
 		
 	}
 
+	
+	
+	
+	
 	public int findMaxDegree() {
-		//System.err.println("findMaxDegree -- TODO");
 		
 		int  max=0;
 		
 		for(String parola: this.grafo.vertexSet()) {
-			int grado=grafo.degreeOf(parola);
+			int grado=grafo.degreeOf(parola);			//calcola i gradi di una parola, ovvero il numero di vertici a cui è connesso direttamente 
 			
 			if(grado>max) {
 				max=grado;
